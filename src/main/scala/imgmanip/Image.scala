@@ -3,7 +3,7 @@ package mandelbrot.imgmanip
 //something to draw on
 import java.awt.image.BufferedImage
 
-//draw drawing pixels in color
+//fillRect and color
 import java.awt.{Graphics2D, Color}
 
 //basic image class
@@ -33,7 +33,7 @@ class Image private (val width: Int, val height: Int) {
         else if (x < 0 || x >= width || y < 0 || y >= height)
             throw new IllegalArgumentException("Pixel out of bounds.")
 
-        //inline rgb from hue; saturation and brighness hardcoded :P
+        //inline rgb from hue; saturation and brightness hardcoded
         val rgb = Color.HSBtoRGB(hue, 0.6f, 1.0f)
 
         //set color of the pen, rgb components are isolated

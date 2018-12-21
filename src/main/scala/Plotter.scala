@@ -32,7 +32,7 @@ class Plotter private (val width: Int, val height: Int, val iterations: Int) {
     def scaleToComplex(x: Int, y: Int) = Complex(xrange._1 + x.toDouble / width.toDouble  * (xrange._2 - xrange._1),
                                                  yrange._1 + y.toDouble / height.toDouble * (yrange._2 - yrange._1)) 
     
-    //actually draw it
+    //draw on img
     def draw {
         //for each pixel on image
         for (x <- 0 until width; y <- 0 until height) {
