@@ -1,7 +1,7 @@
 package mandelbrot.complex
 
 //abs
-import math.sqrt
+import scala.math.sqrt
 
 //class representing complex numbers
 //didnt use another lib since it is easy to implement

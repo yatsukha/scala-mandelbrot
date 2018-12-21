@@ -1,10 +1,10 @@
 package mandelbrot
 
 //image to draw on
-import imgmanip.Image
+import mandelbrot.imgmanip.Image
 
 //complex numbers
-import complex.Complex
+import mandelbrot.complex.Complex
 
 //plots mandelbrot set
 //NOTE: recommended scaling is 2:1, otherwise you need to change xrange and yrange because the image will be skewed

@@ -4,7 +4,7 @@ package mandelbrot.imgmanip
 import java.awt.image.BufferedImage
 
 //fillRect and color
-import java.awt.{Graphics2D, Color}
+import java.awt.Color
 
 //basic image class
 //handles creation, drawing and writing to a file
