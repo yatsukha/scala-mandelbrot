@@ -6,8 +6,8 @@ object Main extends App {
         width = 1920,
         height = 1080,
         maxDistance = 500,
-        maxIterations = 100,
-        expr = "z^2+2*c"
+        maxIterations = 1000,
+        expr = "z^2+0.19*z^3+c" //this is the default, remove for speed
     )
 
     p.draw

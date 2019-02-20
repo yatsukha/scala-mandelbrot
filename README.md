@@ -4,6 +4,8 @@ Simple scala plotter that draws Mandelbrot variant <a href="https://www.codecogs
 
 Implementation consists of classes for complex numbers, image manipulation and the plotting itself. Basic usage is demonstrated in Main.scala but most of the code should be self explanatory anyways. Image manipulation is done trough java.awt.
 
+I also added support for custom variations as I needed practice with scala parsers. Keep in mind that drawing with custom input will be 2 orders of magnitude slower because the parse tree needs to be evaluated for every iteration.
+
 Some examples below.
 
 ## 1000 iterations: ##
