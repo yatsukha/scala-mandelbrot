@@ -40,7 +40,7 @@ case class Com(value: Complex) extends Expr {
 case class Op(left: Expr, right: Expr, fn: Func) extends Expr {
     override
     def toString: String =
-        s"($left $fn $right)"
+        s"($left) $fn ($right)"
 }
 
 object Empty extends Expr

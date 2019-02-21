@@ -5,7 +5,7 @@ import mandelbrot.complex.Complex
 
 /**
  * Main plotter class.
- * Note that some options are hardcoded such as range.
+ * Note that some options are hardcoded such as range, because it was adjusted for default variation.
  * Expected image aspect ratio is 2:1.
  */
 class Plotter private (val width: Int, val height: Int, val maxIterations: Int, val maxDistance: Double, val expr: String) {
@@ -50,8 +50,6 @@ class Plotter private (val width: Int, val height: Int, val maxIterations: Int, 
             "z" -> Complex(0, 0),
             "c" -> Complex(0, 0)
         ))
-
-        println(s"Custom function: $evaluator")
 
         escapeIterator = (c, n) => {
             var iterations = 0
