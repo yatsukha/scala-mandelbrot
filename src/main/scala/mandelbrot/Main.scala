@@ -1,15 +1,19 @@
 package mandelbrot
 
-//example program
+/**
+ * Example program.
+ */
 object Main extends App {
-    val p = Plotter(
-        width = 1920,
-        height = 1080,
-        maxDistance = 500,
+    //mandelbrot.expr_eval.StartInterpreter()
+
+    val plotter = Plotter(
+        width = 2000,
+        height = 1000,
         maxIterations = 1000,
-        expr = "z^2+0.19*z^3+c" //this is the default, remove for speed
+        maxDistance = 500,
+        expr = "z^2+0.19*z^3+c" //remove this bit for speed gain
     )
 
-    p.draw
-    p.write("images/symbolic.png")
+    plotter.draw
+    plotter.write("images/symbolic.png")
 }

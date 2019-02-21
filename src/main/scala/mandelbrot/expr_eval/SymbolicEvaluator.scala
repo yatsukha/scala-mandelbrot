@@ -5,7 +5,7 @@ import mandelbrot.complex.Complex
 /**
  * Evalutes expression in form of a cached parse tree.
  */
-class SymbolicEvaluator private (expr: String, val syms: collection.mutable.Map[String, Complex]) {
+class SymbolicEvaluator private (expr: String, val syms: collection.mutable.Map[String, Complex]) extends Evaluator {
     type Expression = Expr
     type Result = Complex
 
@@ -18,18 +18,13 @@ class SymbolicEvaluator private (expr: String, val syms: collection.mutable.Map[
     def eval(expr: Expression): Result = expr match {
         case Sym(s) => syms(s)
         case Com(c) => c
-        case Op(l, r, op) => op(eval(l), eval(r))
+        case Op(l, r, Lambda(_, op)) => op(eval(l), eval(r))
+        case Empty => Complex(0, 0)
     }
-
-    private def walker(current: Expr): String = s"(${current match {
-        case Sym(s) => s
-        case Com(c) => c.toString
-        case Op(l, r, _) => s"op ${walker(l)} ${walker(r)}"
-    }})"
 
     override
     def toString: String =
-        walker(parseTree)
+        parseTree.toString
 
 }
 

@@ -6,6 +6,7 @@ import mandelbrot.complex.Complex
 /**
  * Main plotter class.
  * Note that some options are hardcoded such as range.
+ * Expected image aspect ratio is 2:1.
  */
 class Plotter private (val width: Int, val height: Int, val maxIterations: Int, val maxDistance: Double, val expr: String) {
     if (maxIterations <= 0)
@@ -31,7 +32,7 @@ class Plotter private (val width: Int, val height: Int, val maxIterations: Int, 
     private var escapeIterator: (Complex, Int) => (Complex, Int) = (c, n) => {
         var z = Complex(0, 0)
         var iterations = 0
-        val lambda = 0.19
+        val lambda = Complex(0.19, 0)
 
         while (z.abs <= maxDistance && iterations < n) {
             z = z * z + z * z * z * lambda + c
