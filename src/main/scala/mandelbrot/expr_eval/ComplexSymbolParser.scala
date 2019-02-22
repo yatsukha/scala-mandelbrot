@@ -53,9 +53,10 @@ class ComplexSymbolParser private extends RegexParsers {
         double ^^ { d => Com(Complex(d.toDouble, 0)) } | symbol ^^ { s => Sym(s) } | "(" ~> expr_b <~ ")"
 
     def term: Parser[Expr] =
-        (factor ~ opt(("^" | "*") ~ term)) ^^ {
+        (factor ~ opt(("^" | "*" | "/") ~ term)) ^^ {
             case f ~ None => f
             case f ~ Some("*" ~ g) => Op(f, g, Lambda("*", _ * _))
+            case f ~ Some("/" ~ g) => Op(f, g, Lambda("/", _ / _))
             case f ~ Some("^" ~ g) => Op(f, g, Lambda("^", (x: Complex, y: Complex) => {
                 var ret = Complex(1, 0)
 

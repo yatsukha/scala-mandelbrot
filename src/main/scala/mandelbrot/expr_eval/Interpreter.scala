@@ -7,12 +7,13 @@ class Interpreter extends Evaluator {
 Commands (can be chained with ;):
 <expression> - expression with symbols or real numbers, complex can be provided as symbols,
                everything that is not a command from below defaults to this
-eval         - evaluate latest expression, if symbols are missing from symbol table you can enter their
-               value in form %f %f, real and imaginary part respectively, when prompted
+               please note that the precedence for */^ is not fully supported so use parenthesis
+eval         - evaluate latest expression, if symbols are missing from symbol table you will be prompted for
+               value in form %f %f, real and imaginary part respectively
 reset        - reset symbol table and expression
 clear        - reset only symbol table
 quit         - exit the interpreter into the caller
-draw         - output the corresponding mandelbrot variation to a file,
+draw         - output the corresponding MANDELBROT variation to a file,
                you will be prompted for width, height and other information
                note that NO expression checking is done, it is up to you to provide a valid expression
                that the plotter can use (only symbols allowed are z and c together with other real numbers)"""
