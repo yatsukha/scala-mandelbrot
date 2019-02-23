@@ -82,6 +82,6 @@ class Plotter private (val width: Int, val height: Int, val maxIterations: Int, 
 }
 
 object Plotter {
-    def apply(width: Int, height: Int, maxIterations: Int, maxDistance: Double, expr: String = ""):Plotter = 
+    def apply(width: Int, height: Int, maxIterations: Int, maxDistance: Double, expr: String = ""): Plotter = 
         new Plotter(width, height, maxIterations, maxDistance, expr)
 }

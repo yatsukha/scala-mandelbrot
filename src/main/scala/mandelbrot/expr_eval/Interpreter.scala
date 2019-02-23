@@ -10,6 +10,7 @@ Commands (can be chained with ;):
                please note that the precedence for */^ is not fully supported so use parenthesis
 eval         - evaluate latest expression, if symbols are missing from symbol table you will be prompted for
                value in form %f %f, real and imaginary part respectively
+list         - list all used symbols
 reset        - reset symbol table and expression
 clear        - reset only symbol table
 quit         - exit the interpreter into the caller
@@ -21,6 +22,7 @@ draw         - output the corresponding MANDELBROT variation to a file,
 
     private val action = Set(
         "eval",
+        "list",
         "reset", 
         "clear",
         "quit",
@@ -47,6 +49,7 @@ draw         - output the corresponding MANDELBROT variation to a file,
 
         for (cmd <- commands) cmd match {
             case "eval" => println(if (expr != Empty) eval(expr) else "/")
+            case "list" => symbols.foreach(xy => println(s"${xy._1} = ${xy._2}"))
             case "reset" => { symbols.clear; expr = Empty }
             case "clear" => symbols.clear
             case "quit" => exit = true
@@ -58,7 +61,7 @@ draw         - output the corresponding MANDELBROT variation to a file,
                     var tokens = io.StdIn.readLine.trim.split(" ")
                     val (width, height) = (tokens(0).toInt, tokens(1).toInt)
                     
-                    finePrint("Enter number of iterations and escape distanc: ")
+                    finePrint("Enter number of iterations and escape distance: ")
                     tokens = io.StdIn.readLine.trim.split(" ")
                     val (n, dist) = (tokens(0).toInt, tokens(1).toDouble)
 
@@ -86,7 +89,7 @@ draw         - output the corresponding MANDELBROT variation to a file,
             case _ => expr = {
                 val parser = ComplexSymbolParser()
                 val ret = parser.parse(parser.expr_a, cmd).get
-                    exprStr = cmd
+                exprStr = cmd
 
                 println(s"Intepreted as: $ret")
 

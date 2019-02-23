@@ -10,7 +10,7 @@ import mandelbrot.complex.Complex
  */
 
 /**
- * Nice function syntax
+ * This exists only to provide nice toString in pair with a function.
  */
 sealed abstract class Func
 
@@ -47,23 +47,21 @@ object Empty extends Expr
 
 class ComplexSymbolParser private extends RegexParsers {
     val double = """(\d+(\.\d+)?)""".r
+    val imaginary = """(\d+(\.\d+)?)i""".r
     val symbol = "[a-zA-Z]+".r
 
     def factor: Parser[Expr] =
-        double ^^ { d => Com(Complex(d.toDouble, 0)) } | symbol ^^ { s => Sym(s) } | "(" ~> expr_b <~ ")"
+        imaginary ^^ { i => Com(Complex(0, i.dropRight(1).toDouble)) } |
+        double ^^ { d => Com(Complex(d.toDouble, 0)) } | 
+        symbol ^^ { s => Sym(s) } | 
+        "(" ~> expr_b <~ ")"
 
     def term: Parser[Expr] =
         (factor ~ opt(("^" | "*" | "/") ~ term)) ^^ {
             case f ~ None => f
             case f ~ Some("*" ~ g) => Op(f, g, Lambda("*", _ * _))
             case f ~ Some("/" ~ g) => Op(f, g, Lambda("/", _ / _))
-            case f ~ Some("^" ~ g) => Op(f, g, Lambda("^", (x: Complex, y: Complex) => {
-                var ret = Complex(1, 0)
-
-                (1 to (y.r + 0.0001).toInt).foreach(_ => ret = ret * x)
-
-                ret
-            }))
+            case f ~ Some("^" ~ g) => Op(f, g, Lambda("^", _ ^ _))
             case _ => throw new IllegalStateException
         }
 
