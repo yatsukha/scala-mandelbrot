@@ -3,6 +3,9 @@ package mandelbrot.imgmanip
 import java.awt.image.BufferedImage
 import java.awt.Color
 
+/**
+ * Basic image drawing functionality.
+ */
 class Image private (val width: Int, val height: Int) {
     if (width <= 0 || height <= 0)
         throw new IllegalArgumentException("Invalid image size.")
@@ -17,7 +20,7 @@ class Image private (val width: Int, val height: Int) {
 
     var saturation = 0.6f
 
-    def setPixel(x: Int, y: Int, hue: Float, brightness: Float) {
+    def setPixel(x: Int, y: Int, hue: Float, brightness: Float): Unit = {
         if (_disposed)
             throw new IllegalStateException("Image was disposed.")
         else if (x < 0 || x >= width || y < 0 || y >= height)
@@ -32,7 +35,7 @@ class Image private (val width: Int, val height: Int) {
         graphics.fillRect(x, y, 1, 1)
     }
 
-    def write(file: String) {
+    def write(file: String): Unit = {
         javax.imageio.ImageIO.write(canvas, "png", new java.io.File(file))
 
         graphics.dispose()
@@ -41,5 +44,6 @@ class Image private (val width: Int, val height: Int) {
 }
 
 object Image {
-    def apply(width: Int, height: Int) = new Image(width, height)
+    def apply(width: Int, height: Int): Image = 
+        new Image(width, height)
 }

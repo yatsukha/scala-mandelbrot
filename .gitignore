@@ -1,5 +1,7 @@
 target/
 project/
 .idea/
+.metals/
+.bloop/
 out/
 src/main/main.iml
